@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mrz_scanner/flutter_mrz_scanner.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'camera_overlay.dart';
 
@@ -11,6 +12,16 @@ class CameraPage extends StatefulWidget {
 class _CameraPageState extends State<CameraPage> {
   bool isParsed = false;
   MRZController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    initPermission();
+  }
+
+  void initPermission() {
+    Permission.camera.request();
+  }
 
   @override
   Widget build(BuildContext context) {
